@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Tooltip("horizontal speed of player")]
-    [Header("Player Movement Variables")]
-    [SerializeField]
+
     private float horizontal;
     [SerializeField]
     [Range(0, 20)]
@@ -14,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpingPower = 16f;
     private bool isFacingRight = true;
     private bool doubleJump;
-
+    [Header("Player Movement Variables")]
     [SerializeField] private  Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
