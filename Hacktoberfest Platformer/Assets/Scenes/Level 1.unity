@@ -9498,6 +9498,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1362317324351610637, guid: fe110a3080662664c82b9509fbecf0ee, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7d16f1b070ebe9c49bcc236bd1905496, type: 2}
     - target: {fileID: 1362317324351610639, guid: fe110a3080662664c82b9509fbecf0ee, type: 3}
       propertyPath: m_Name
       value: Checkpoint Flag
@@ -9511,26 +9515,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1812968169, guid: a61b2532fd62e3f4a9497948d9b7311b, type: 3}
-      propertyPath: m_Name
-      value: Level Name
-      objectReference: {fileID: 0}
-    - target: {fileID: 1812968171, guid: a61b2532fd62e3f4a9497948d9b7311b, type: 3}
-      propertyPath: m_text
-      value: Current Level
-      objectReference: {fileID: 0}
-    - target: {fileID: 1812968171, guid: a61b2532fd62e3f4a9497948d9b7311b, type: 3}
-      propertyPath: m_fontSize
-      value: 33.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1812968171, guid: a61b2532fd62e3f4a9497948d9b7311b, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5357423692115041830, guid: a61b2532fd62e3f4a9497948d9b7311b, type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5357423693072062082, guid: a61b2532fd62e3f4a9497948d9b7311b, type: 3}
       propertyPath: m_Name
       value: PlayerUI
@@ -9649,14 +9633,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8182520617816979940, guid: b9906a8af0f2fc7438130751de0618fb, type: 3}
-      propertyPath: jumpingPower
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8182520617816979940, guid: b9906a8af0f2fc7438130751de0618fb, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 72
-      objectReference: {fileID: 0}
     - target: {fileID: 8182520617816979961, guid: b9906a8af0f2fc7438130751de0618fb, type: 3}
       propertyPath: m_RootOrder
       value: 1
