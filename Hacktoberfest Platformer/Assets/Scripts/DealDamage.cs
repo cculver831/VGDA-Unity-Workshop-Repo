@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour
+public class DealDamage : MonoBehaviour
 {
     [TagSelector]
     public string TagFilter = "";
 
-    [Range(0, 50)] [SerializeField]
+    [Range(0, 50)]
+    [SerializeField]
     public float knockBackForce = 15;
 
     [SerializeField]
@@ -24,9 +25,9 @@ public class MeleeWeapon : MonoBehaviour
         {
             //Modify Health
             Health health = collision.gameObject.GetComponent<Health>();
-            if(health.IsHurt == false)
+            if (health.IsHurt == false)
             {
-                health.ModifyHealth(damageDealt);
+                health.ModifyHealth(-damageDealt);
 
                 Debug.LogFormat("hit");
 
@@ -35,7 +36,7 @@ public class MeleeWeapon : MonoBehaviour
 
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * knockBackForce, ForceMode2D.Impulse);
             }
-            
+
         }
     }
 

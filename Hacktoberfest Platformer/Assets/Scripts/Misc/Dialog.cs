@@ -16,16 +16,20 @@ public class Dialog : MonoBehaviour
     void Start()
     {
         textComponent.text = string.Empty;
-        StartDialog();
+        //StartDialog();
     }
 
     ///-///////////////////////////////////////////////////////////
     ///
-    public void StartDialog()
+    public void StartDialog(string[] textToDisplay)
     {
+        textComponent.text = string.Empty;
+        Debug.LogFormat("dialog received");
+        lines = (string[])textToDisplay.Clone();
         index = 0;
-        StartCoroutine(TypeLine());
+        StartCoroutine(TypeLine(textToDisplay));
     }
+
 
 
     ///-///////////////////////////////////////////////////////////
@@ -50,7 +54,7 @@ public class Dialog : MonoBehaviour
 
     ///-///////////////////////////////////////////////////////////
     ///
-    IEnumerator TypeLine()
+    IEnumerator TypeLine(string[] lines)
     {
         foreach (char c in lines[index].ToCharArray())
         {
@@ -68,7 +72,7 @@ public class Dialog : MonoBehaviour
         {
             index++;
             textComponent.text = string.Empty;
-            StartCoroutine(TypeLine());
+            StartCoroutine(TypeLine(lines));
         }
         else
         {

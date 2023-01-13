@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
 
     public static UIManager instance;
-
+    public Dialog DialogPanel;
 
     //Awake() happens sooner than Start()
     private void Awake()
@@ -36,4 +36,11 @@ public class UIManager : MonoBehaviour
         pointsText.text = points.ToString();
     }
 
+    ///-///////////////////////////////////////////////////////////
+    ///
+    public void DisplayDialog(string [] lines, float textSpeed)
+    {
+        DialogPanel.gameObject.SetActive(true);
+        DialogPanel.StartDialog(lines);
+    }
 }

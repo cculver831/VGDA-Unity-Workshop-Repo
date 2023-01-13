@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     public virtual void ModifyHealth(float damage)
     {
         StartCoroutine(Hurting());
-        _totalHealth -= damage;
+        _totalHealth += damage;
         if (totalHealth <= 0)
         {
             gameObject.SetActive(false);

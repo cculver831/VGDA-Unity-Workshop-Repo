@@ -6,7 +6,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class TopDownMovement : MonoBehaviour
 {
-    Vector2 movementInput;
+    public Vector2 movementInput {get; private set;}
     Vector2 rotationInput;
     [SerializeField]
     private Rigidbody2D rb;
