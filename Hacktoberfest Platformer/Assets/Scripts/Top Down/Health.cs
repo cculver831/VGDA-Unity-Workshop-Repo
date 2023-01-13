@@ -8,17 +8,19 @@ public class Health : MonoBehaviour
     private float _totalHealth = 25;
     public float totalHealth => _totalHealth;
 
+    [SerializeField]
+    Animation deathAnimation;
     public bool IsHurt { get; private set; } = false;
     ///-///////////////////////////////////////////////////////////
     ///
-    public void ModifyHealth(float damage)
+    public virtual void ModifyHealth(float damage)
     {
         StartCoroutine(Hurting());
         _totalHealth -= damage;
         if (totalHealth <= 0)
         {
-
-            Debug.LogFormat("player dead ;(");
+            gameObject.SetActive(false);
+            //deathAnimation.Play();
         }
     }
 

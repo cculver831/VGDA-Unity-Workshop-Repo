@@ -17,7 +17,8 @@ public class TopDownMovement : MonoBehaviour
     [SerializeField]
     private PlayerInput playerInput;
     public float moveSpeed = 1f;
-
+    [SerializeField]
+    Health health;
     [SerializeField]
     Transform weapon;
     public float collisionOffset = 0.05f;
