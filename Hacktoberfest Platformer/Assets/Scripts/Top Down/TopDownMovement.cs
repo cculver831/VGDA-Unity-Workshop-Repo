@@ -11,8 +11,6 @@ public class TopDownMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
     [SerializeField]
-    private Rigidbody2D swordRB;
-    [SerializeField]
     private Animator playerAnimator;
     [SerializeField]
     private Animator attackAnimator;
@@ -20,10 +18,13 @@ public class TopDownMovement : MonoBehaviour
     private PlayerInput playerInput;
     public float moveSpeed = 1f;
 
+    [SerializeField]
+    Transform weapon;
     public float collisionOffset = 0.05f;
 
     public ContactFilter2D movementFilter;
 
+    private bool isGamepad;
     private bool isFacingRight = true;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
@@ -42,6 +43,7 @@ public class TopDownMovement : MonoBehaviour
     {
         UpdateMovementAnimation();
 
+        
     }
 
     ///-///////////////////////////////////////////////////////////
@@ -51,9 +53,10 @@ public class TopDownMovement : MonoBehaviour
 
         if (movementInput != Vector2.zero)
         {
+            //The number of objects we can collide with if we go in this direction
             int count = rb.Cast(movementInput, movementFilter, castCollisions, moveSpeed * Time.fixedDeltaTime + collisionOffset);
 
-            Debug.LogFormat("count {0}", count);
+            //if nothing is in the way, move our character
             if (count == 0)
             {
                 rb.MovePosition(rb.position + movementInput * moveSpeed * Time.fixedDeltaTime);
@@ -61,21 +64,49 @@ public class TopDownMovement : MonoBehaviour
 
         }
 
-        Flip();
+        HandleRotation(rotationInput);
+
+        Flip(movementInput, GetComponent<SpriteRenderer>());
+    }
+    public void OnDeviceChange(PlayerInput pi)
+    {
+        isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
     }
 
     ///-///////////////////////////////////////////////////////////
     ///
-    private void Flip()
+    void HandleRotation(Vector2 direction)
     {
-        // Flip our GameObject everyTime we change direction
-        if (isFacingRight && movementInput.x < 0f || isFacingRight == false && movementInput.x > 0f)
+        direction.Normalize();
+
+        Vector2 v = direction;
+
+
+        v = Vector2.ClampMagnitude(v, 4f);
+        Vector2 newLocation = (Vector2)transform.position + v;
+
+        if (direction != Vector2.zero)
         {
-            //Invert Transform of object
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            weapon.position = Vector2.Lerp(weapon.position, newLocation, 10 * Time.deltaTime);
+
+            //Look at player
+            Flip(direction, weapon.gameObject.GetComponentInChildren<SpriteRenderer>());
+        }
+        
+
+    }
+    ///-///////////////////////////////////////////////////////////
+    ///
+    private void Flip(Vector2 input, SpriteRenderer sr)
+    {
+
+        if(input.x > 0f)
+        {
+            sr.flipX = false;
+        }
+        else if(input.x < 0f)
+        {
+            sr.flipX = true;
         }
     }
 
@@ -100,13 +131,17 @@ public class TopDownMovement : MonoBehaviour
     ///
     public void OnLook(CallbackContext inputValue)
     {
+        if (inputValue.ReadValue<Vector2>() != Vector2.zero)
+        {
             rotationInput = inputValue.ReadValue<Vector2>();
+        }
+
     }
     ///-///////////////////////////////////////////////////////////
     ///
     public void OnMove(CallbackContext inputValue)
     {
-        movementInput = inputValue.ReadValue<Vector2>();
+            movementInput = inputValue.ReadValue<Vector2>();
     }
 
 
@@ -115,7 +150,7 @@ public class TopDownMovement : MonoBehaviour
     public void OnFire(CallbackContext inputValue)
     {
 
-        Debug.LogFormat("firing");
+        //Debug.LogFormat("firing");
         attackAnimator.SetBool("isAttacking", true);
 
     }
