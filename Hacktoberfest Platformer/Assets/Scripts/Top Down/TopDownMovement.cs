@@ -24,8 +24,6 @@ public class TopDownMovement : MonoBehaviour
 
     public ContactFilter2D movementFilter;
 
-    private bool isGamepad;
-    private bool isFacingRight = true;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
 
@@ -42,7 +40,6 @@ public class TopDownMovement : MonoBehaviour
     private void Update()
     {
         UpdateMovementAnimation();
-
         
     }
 
@@ -68,10 +65,8 @@ public class TopDownMovement : MonoBehaviour
 
         Flip(movementInput, GetComponent<SpriteRenderer>());
     }
-    public void OnDeviceChange(PlayerInput pi)
-    {
-        isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
-    }
+
+
 
     ///-///////////////////////////////////////////////////////////
     ///
@@ -82,7 +77,7 @@ public class TopDownMovement : MonoBehaviour
         Vector2 v = direction;
 
 
-        v = Vector2.ClampMagnitude(v, 4f);
+        v = Vector2.ClampMagnitude(v, 6);
         Vector2 newLocation = (Vector2)transform.position + v;
 
         if (direction != Vector2.zero)

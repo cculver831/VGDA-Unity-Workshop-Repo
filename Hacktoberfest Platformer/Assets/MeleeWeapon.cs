@@ -14,19 +14,28 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField]
     [Range(0, 20)]
     private float damageDealt = 2f;
+
+    ///-///////////////////////////////////////////////////////////
+    ///
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.tag == TagFilter)
         {
             //Modify Health
-            collision.gameObject.GetComponent<Health>().ModifyHealth(damageDealt);
+            Health health = collision.gameObject.GetComponent<Health>();
+            if(health.IsHurt == false)
+            {
+                health.ModifyHealth(damageDealt);
 
+                Debug.LogFormat("hit");
 
-            //Apply knockback
-            Vector2 direction = (collision.transform.position - transform.position);
-            direction.Normalize();
-           // collision.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * knockBackForce, ForceMode2D.Impulse);
+                //Apply knockback
+                Vector2 direction = (collision.transform.position - transform.position);
+
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * knockBackForce, ForceMode2D.Impulse);
+            }
+            
         }
     }
 

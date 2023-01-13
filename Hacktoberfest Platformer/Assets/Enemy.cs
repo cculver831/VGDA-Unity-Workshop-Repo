@@ -19,17 +19,18 @@ public class Enemy : MonoBehaviour
     Animator weaponAnimator;
     [SerializeField]
     Transform weapon;
-    private bool isFacingRight = true;
 
+    [SerializeField]
+    Health Health;
     private bool isMoving = false;
-
+    private float prevHaelth;
 
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-
+        prevHaelth = Health.totalHealth;
     }
 
 
@@ -59,7 +60,7 @@ public class Enemy : MonoBehaviour
     ///
     void LineOfSight(Vector2 direction)
     {
-        if (Vector3.Distance(transform.position, player.position) <= LOS)
+        if (Vector3.Distance(transform.position, player.position) <= LOS && Health.IsHurt == false)
         {
             if (Vector3.Distance(transform.position, player.position) < attackDistance)
             {
@@ -74,7 +75,7 @@ public class Enemy : MonoBehaviour
                 rb.MovePosition(rb.position + direction * 3 * Time.fixedDeltaTime);
                 isMoving = true;
 
-                //Flip(direction.x);
+                Flip(direction, GetComponent<SpriteRenderer>()); ;
             }
 
         }
@@ -115,22 +116,20 @@ public class Enemy : MonoBehaviour
 
     ///-///////////////////////////////////////////////////////////
     ///
-    private void Flip(float xValue)
+    private void Flip(Vector2 input, SpriteRenderer sr)
     {
-        // Flip our GameObject everyTime we change direction
-        if (isFacingRight && xValue < 0f || isFacingRight == false && xValue > 0f)
+
+        if (input.x > 0f)
         {
-            //Invert Transform of object
-            //isFacingRight = !isFacingRight;
-            //Vector3 localScale = transform.localScale;
-            //localScale.x *= -1f;
-            //transform.localScale = localScale;
-
-            SpriteRenderer sr = GetComponent<SpriteRenderer>();
-            sr.flipX = !sr.flipX;
+            sr.flipX = false;
         }
-
+        else if (input.x < 0f)
+        {
+            sr.flipX = true;
+        }
     }
+
+
     ///-///////////////////////////////////////////////////////////
     ///
     void UpdateMovementAnimation()
