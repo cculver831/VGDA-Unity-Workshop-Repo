@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Range(1, 10)]
+    public float speed = 3f;
     [Range(0, 20)]
     public float LOS;
     [Range(0f, 5f)]
@@ -47,7 +49,8 @@ public class Enemy : MonoBehaviour
         Vector2 direction = (player.position - rb.position);
         direction.Normalize();
 
-        WeaponFollow(direction);
+        if(weapon != null)
+            WeaponFollow(direction);
 
         LineOfSight(direction);
       
@@ -72,7 +75,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 //Move towards direction
-                rb.MovePosition(rb.position + direction * 3 * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
                 isMoving = true;
 
                 Flip(direction, GetComponent<SpriteRenderer>()); ;
@@ -108,8 +111,14 @@ public class Enemy : MonoBehaviour
     {
 
         yield return new WaitForSeconds(1f);
-
-        weaponAnimator.SetBool("isAttacking", true);
+        if(weapon != null)
+        {
+            weaponAnimator.SetBool("isAttacking", true);
+        }
+        else
+        {
+            characterAnimator.SetBool("isAttacking", true);
+        }
     }
 
 
