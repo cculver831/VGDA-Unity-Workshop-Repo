@@ -86,11 +86,15 @@ public class TopDownMovement : MonoBehaviour
             weapon.position = Vector2.Lerp(weapon.position, newLocation, 10 * Time.deltaTime);
 
             //Look at player
-            Flip(direction, weapon.gameObject.GetComponentInChildren<SpriteRenderer>());
+            float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            weapon.rotation = Quaternion.Euler(0f, 0f, zRotation);
+            //Flip(direction, weapon.gameObject.GetComponentInChildren<SpriteRenderer>());
         }
         
 
     }
+
+
     ///-///////////////////////////////////////////////////////////
     ///
     private void Flip(Vector2 input, SpriteRenderer sr)

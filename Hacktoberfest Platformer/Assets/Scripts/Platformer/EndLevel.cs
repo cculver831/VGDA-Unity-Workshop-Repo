@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public enum Scenes
 {
-    LEVEL1 = 0,
-    LEVEL2 = 1,
-    LEVEL3 = 2,
+    DUNGEON = 0,
+    LEVEL1 = 1,
+    LEVEL2 = 2,
+    LEVEL3 = 3,
 }
 public class EndLevel : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class EndLevel : MonoBehaviour
     public Scenes scene;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadSceneAsync((int)scene);
+        if(collision.tag == "Player")
+        {
+            TransitionManager.Instance.SetEndLevel((int) scene);
+            
+        }
     }
 }

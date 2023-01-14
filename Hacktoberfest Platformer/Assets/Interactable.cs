@@ -7,35 +7,24 @@ using System;
 
 public enum ItemType
 {
-    Key,
-    Weapon,
-    Misc,
+    Key = 0,
+    Weapon = 1,
+    Misc = 2,
 }
 public class Interactable : MonoBehaviour
 {
 
     public bool needsItem = true;
-    public int ItemID;
+    public int ID;
     public ItemType Item;
-    //[ConditionalField("Needs Item")] 
 
     public ItemType GetItemType()
     {
         return Item;
     }
 
-    public int GetItemID()
-    {
-        return ItemID;
-    }
+    public virtual void AttemptInteract() { }
 
-    public virtual void AttemptInteract()
-    {
-
-    }
-
-    public virtual void AttemptDialog()
-    {
-
-    }
+    public virtual void AttemptDialog() { }
+    
 }

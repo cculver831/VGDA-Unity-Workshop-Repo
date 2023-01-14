@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: pivot point
   m_TagString: Enemy
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 1020332243882977242}
   - component: {fileID: 1020332243882977243}
   - component: {fileID: 1020332243882977241}
+  - component: {fileID: 949840725}
   m_Layer: 0
   m_Name: goblin_knife
   m_TagString: Weapon
@@ -185,6 +186,21 @@ PolygonCollider2D:
       - {x: 0.049359914, y: -0.030998163}
       - {x: 0.055012908, y: 0.033436686}
       - {x: 0.00643616, y: 0.078932054}
+--- !u!114 &949840725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020332243882977254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dee2678d6c0fdd64cb7c7bd408bac17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TagFilter: Player
+  knockBackForce: 5
+  damageDealt: 5
 --- !u!1 &1020332244363540083
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   LOS: 5
-  attackDistance: 2
+  attackDistance: 1.5
   rb: {fileID: 1020332244363540086}
   characterAnimator: {fileID: 1020332244363540080}
   weaponAnimator: {fileID: 1020332243882977242}
@@ -361,6 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totalHealth: 15
+  room: {fileID: 0}
   deathAnimation: {fileID: 0}
 --- !u!95 &1020332244363540080
 Animator:

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Door : Interactable
 {
-    public int ID;
-
     public Animator animator;
 
     public TextPromptTrigger textPrompt;
@@ -17,6 +15,8 @@ public class Door : Interactable
         animator.SetBool("isOpen", true);
     }
 
+    ///-///////////////////////////////////////////////////////////
+    ///
     public override void AttemptDialog()
     {
         base.AttemptDialog();

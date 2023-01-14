@@ -12,10 +12,14 @@ public class Item : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            
-            collision.GetComponent<Inventory>().items.Add(this);
-            GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<Collider2D>().enabled = false;
+            Inventory inventory = collision.GetComponent<Inventory>();
+            if (inventory)
+            {
+                inventory.AddItem(this);
+                GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<Collider2D>().enabled = false;
+            }
+           
         }
     }
 }

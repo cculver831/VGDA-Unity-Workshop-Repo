@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     public float LOS;
     [Range(0f, 5f)]
     public float attackDistance;
+
+    private float meleeRange => attackDistance;
     Rigidbody2D player;
 
     [SerializeField]
@@ -22,17 +24,17 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     Transform weapon;
 
+
     [SerializeField]
-    Health Health;
+    public Health Health;
     private bool isMoving = false;
-    private float prevHaelth;
 
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-        prevHaelth = Health.totalHealth;
+
     }
 
 
@@ -54,9 +56,6 @@ public class Enemy : MonoBehaviour
 
         LineOfSight(direction);
       
-
-       
-  
     }
 
     ///-///////////////////////////////////////////////////////////
@@ -95,7 +94,7 @@ public class Enemy : MonoBehaviour
 
         //Move weapon within radius around enemy
         Vector2 v = player.position - rb.position;
-        v = Vector2.ClampMagnitude(v, 1f);
+        v = Vector2.ClampMagnitude(v, meleeRange);
         Vector2 newLocation = rb.position + v;
         weapon.transform.position = Vector2.MoveTowards(weapon.transform.position, newLocation, 1f);
 
@@ -111,6 +110,7 @@ public class Enemy : MonoBehaviour
     {
 
         yield return new WaitForSeconds(1f);
+
         if(weapon != null)
         {
             weaponAnimator.SetBool("isAttacking", true);

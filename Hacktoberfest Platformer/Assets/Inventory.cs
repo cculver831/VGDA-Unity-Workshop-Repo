@@ -12,6 +12,14 @@ public class Inventory : MonoBehaviour
 
     ///-///////////////////////////////////////////////////////////
     ///
+    public void AddItem(Item item)
+    {
+        items.Add(item);
+    }
+
+
+    ///-///////////////////////////////////////////////////////////
+    ///
     public void AttemptInteract(CallbackContext inputValue)
     { 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, player.movementInput, 10, interactableLayer);
@@ -30,7 +38,7 @@ public class Inventory : MonoBehaviour
                     foreach (Item item in items)
                     {
                        
-                        if (item.ID == interactable.ItemID && item.type == interactable.GetItemType())
+                        if (item.ID == interactable.ID)
                         {
                             interactable.AttemptInteract();
                         }

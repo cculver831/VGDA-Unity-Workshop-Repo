@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class MeleeWeapon : MonoBehaviour
 {
@@ -19,16 +20,16 @@ public class MeleeWeapon : MonoBehaviour
     ///
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.gameObject.tag == TagFilter)
+        if (collision.collider.transform.tag == TagFilter)
         {
             //Modify Health
             Health health = collision.gameObject.GetComponent<Health>();
+
             if(health.IsHurt == false)
             {
+
                 health.ModifyHealth(-damageDealt);
 
-                Debug.LogFormat("hit");
 
                 //Apply knockback
                 Vector2 direction = (collision.transform.position - transform.position);
