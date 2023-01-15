@@ -6,11 +6,11 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class FPSMovement : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    public Rigidbody rb;
 
     public float moveSpeed = 5f;
 
-    public Vector2 movementInput { get; set; }
+    public Vector3 movementInput { get; set; }
     public Vector2 reversedMovementInput { get; set; }
     Vector2 rotationInput;
     Vector3 moveHorizontal;
@@ -53,11 +53,11 @@ public class FPSMovement : MonoBehaviour
         moveVertical = transform.right * movementInput.y;
 
         //If we are trying to move
-        if (movementInput != Vector2.zero)
+        if (movementInput != Vector3.zero)
         {
             Debug.Log("Moving");
             //Multiply our movement vectors by speed
-            rb.velocity = (moveHorizontal + moveVertical) * moveSpeed;
+            rb.velocity = (moveVertical + moveHorizontal)* moveSpeed;
         }
         else
         {
