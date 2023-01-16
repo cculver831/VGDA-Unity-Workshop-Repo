@@ -6,6 +6,9 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class FPSMovement : MonoBehaviour
 {
+
+    public static FPSMovement instance; 
+
     public Rigidbody rb;
 
     public float moveSpeed = 5f;
@@ -27,7 +30,7 @@ public class FPSMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
