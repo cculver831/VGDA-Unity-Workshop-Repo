@@ -18,9 +18,8 @@ public class TopDownMovement : MonoBehaviour
     private PlayerInput playerInput;
     public float moveSpeed = 1f;
     [SerializeField]
-    Health health;
-    [SerializeField]
     Transform weapon;
+    [Range(0,1)]
     public float collisionOffset = 0.05f;
 
     public ContactFilter2D movementFilter;
@@ -85,7 +84,7 @@ public class TopDownMovement : MonoBehaviour
         {
             weapon.position = Vector2.Lerp(weapon.position, newLocation, 10 * Time.deltaTime);
 
-            //Look at player
+            // Rotate towards w/ stick movement
             float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             weapon.rotation = Quaternion.Euler(0f, 0f, zRotation);
             //Flip(direction, weapon.gameObject.GetComponentInChildren<SpriteRenderer>());

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public List<AddToPoints> objectsToPool;
+    public List<GameObject> objectsToPool;
 
     int count = 0;
     // Start is called before the first frame update
@@ -16,7 +16,7 @@ public class ObjectPooler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+       // if (Input.GetKeyDown(KeyCode.P))
         {
             EnableObject();
         }

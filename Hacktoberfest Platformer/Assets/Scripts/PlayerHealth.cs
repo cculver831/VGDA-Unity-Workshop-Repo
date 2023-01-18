@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Health
 {
-    public float currentHealth;
 
     public Slider slider;
 
@@ -14,8 +13,8 @@ public class PlayerHealth : Health
     ///
     void Start()
     {
-        currentHealth = totalHealth;
-        SetMaxHealth(currentHealth);
+        maxHealth = totalHealth;
+        SetMaxHealth(maxHealth);
     }
 
 
@@ -32,18 +31,25 @@ public class PlayerHealth : Health
     public override void ModifyHealth(float damage)
     {
         base.ModifyHealth(damage);
+
+        if (totalHealth >= base.maxHealth)
+        {
+            
+        }
+
         if (totalHealth <= 0)
         {
             //restart the game
             TransitionManager.Instance.SetEndLevel(0);
             
         }
-        SetHealth(totalHealth);
+
+        SetHealthBar(totalHealth);
     }
 
     ///-///////////////////////////////////////////////////////////
     ///
-    public void SetHealth(float health)
+    public void SetHealthBar(float health)
     {
         slider.value = health;
     }

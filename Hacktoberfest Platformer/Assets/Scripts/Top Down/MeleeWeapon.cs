@@ -16,17 +16,25 @@ public class MeleeWeapon : MonoBehaviour
     [Range(0, 20)]
     private float damageDealt = 2f;
 
+    [SerializeField]
+    private AudioSource audio;
     ///-///////////////////////////////////////////////////////////
     ///
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.transform.tag == TagFilter)
         {
+            if(collision.collider.transform.tag == "Player")
+                Debug.LogFormat("player hit {0}", damageDealt);
+
+
             //Modify Health
             Health health = collision.gameObject.GetComponent<Health>();
 
             if(health.IsHurt == false)
             {
+                if(audio)
+                    audio.Play();
 
                 health.ModifyHealth(-damageDealt);
 
