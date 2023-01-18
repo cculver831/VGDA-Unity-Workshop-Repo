@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    [SerializeField]
+    AudioSource source;
     public ItemType type = ItemType.Key;
     public int ID;
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag != "Player") return;
+ 
+        Inventory inventory = collision.GetComponent<Inventory>();
+
+        if (inventory)
         {
-            Inventory inventory = collision.GetComponent<Inventory>();
-            if (inventory)
+            if(source != null)
             {
-                inventory.AddItem(this);
-                GetComponent<SpriteRenderer>().enabled = false;
-                GetComponent<Collider2D>().enabled = false;
+                source.Play();
             }
-           
+
+            inventory.AddItem(this);
+
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
         }
+      
     }
 }

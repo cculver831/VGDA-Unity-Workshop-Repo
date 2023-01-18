@@ -27,7 +27,7 @@ public class Dialog : MonoBehaviour
         Debug.LogFormat("dialog received");
         lines = (string[])textToDisplay.Clone();
         index = 0;
-        StartCoroutine(TypeLine(textToDisplay));
+        StartCoroutine(TypeLine(lines));
     }
 
 
