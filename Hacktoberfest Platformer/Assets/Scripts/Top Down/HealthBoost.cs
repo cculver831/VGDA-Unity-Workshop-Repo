@@ -9,6 +9,8 @@ public class HealthBoost : MonoBehaviour
 
     [SerializeField] [TagSelector]
     private string tagToCollideWith = "";
+
+
     ///-///////////////////////////////////////////////////////////
     ///
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,7 +21,8 @@ public class HealthBoost : MonoBehaviour
         {
             // If the player needs a health boost
 
-            Debug.LogFormat("total {0} max {1}", health.totalHealth, health.maxHealth);
+            //Debug.LogFormat("total {0} max {1}", health.totalHealth, health.maxHealth);
+
             if (health.totalHealth < health.maxHealth)
             {
                 health.ModifyHealth(boostAmount);

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1395907395240568752}
   - component: {fileID: 1395907395240568753}
   - component: {fileID: 1395907395240568758}
+  - component: {fileID: 1302445009}
   m_Layer: 0
   m_Name: Health Potion
   m_TagString: Untagged
@@ -154,6 +155,22 @@ PolygonCollider2D:
       - {x: 0.0625, y: -0.375}
       - {x: 0.3125, y: -0.125}
       - {x: 0.3125, y: 0.375}
+--- !u!114 &1302445009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395907395240568756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 438ad6aac3bc4ab4f813dd21a862668a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagFilter: Player
+  lines:
+  - ' you''re too healthy to drink this.'
+  textSpeed: 0.1
 --- !u!1 &1395907395812461988
 GameObject:
   m_ObjectHideFlags: 0
