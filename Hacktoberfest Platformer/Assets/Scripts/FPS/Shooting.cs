@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
+using TMPro;
 
 public class Shooting : MonoBehaviour
 {
@@ -10,19 +11,23 @@ public class Shooting : MonoBehaviour
     public Animator gunAnimator;
     public float shooting;
     public Camera cam;
-
+    public TextMeshProUGUI AmmoGUI;
     public float currentAmmo;
+    private float totalAmmo;
     public float fireRate;
     public bool able2Fire;
 
     public int damage;
-    // Start is called before the first frame update
+
+    ///-///////////////////////////////////////////////////////////
+    ///
     void Start()
     {
-        
+        totalAmmo = currentAmmo;
     }
 
-    // Update is called once per frame
+    ///-///////////////////////////////////////////////////////////
+    ///
     void Update()
     {
         if (shooting > 0 && currentAmmo > 0 && able2Fire)
@@ -55,21 +60,26 @@ public class Shooting : MonoBehaviour
     }
 
 
-
+    ///-///////////////////////////////////////////////////////////
+    ///
     IEnumerator delayFire()
     {
         yield return new WaitForSeconds(fireRate);
         able2Fire = true;
     }
+
     #region ControllerCallbacks
     ///-///////////////////////////////////////////////////////////
     ///
     public void OnFire(CallbackContext inputValue)
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
         Debug.Log("firing");
+
         //attackAnimator.SetBool("isAttacking", true);
         shooting = inputValue.ReadValue<float>();
+        
+        AmmoGUI.text = totalAmmo.ToString() + " / " + currentAmmo.ToString(); ;
 
     }
     #endregion
