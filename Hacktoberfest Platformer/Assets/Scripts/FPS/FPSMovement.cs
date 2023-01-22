@@ -10,6 +10,7 @@ public class FPSMovement : MonoBehaviour
     public static FPSMovement instance; 
 
     public Rigidbody rb;
+    public Animator animator;
 
     public float moveSpeed = 5f;
 
@@ -61,10 +62,12 @@ public class FPSMovement : MonoBehaviour
             Debug.Log("Moving");
             //Multiply our movement vectors by speed
             rb.velocity = (moveVertical + moveHorizontal)* moveSpeed;
+            animator.SetBool("Running", true);
         }
         else
         {
             rb.velocity = Vector2.zero;
+            animator.SetBool("Running", false);
         }
 
         

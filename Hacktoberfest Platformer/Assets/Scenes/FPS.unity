@@ -22621,6 +22621,7 @@ GameObject:
   - component: {fileID: 880197654}
   - component: {fileID: 880197657}
   - component: {fileID: 880197658}
+  - component: {fileID: 880197659}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -22775,6 +22776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 880197655}
+  animator: {fileID: 880197659}
   moveSpeed: 5
   mouseSensitivity: 0.1
   maxLookAngle: 160
@@ -22849,6 +22851,26 @@ MonoBehaviour:
   deathAnimation: {fileID: 0}
   currentHealth: 0
   slider: {fileID: 414928990}
+--- !u!95 &880197659
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880197651}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 025d5b14143f7674cb1612f44933ec62, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1241890882
 GameObject:
   m_ObjectHideFlags: 0
