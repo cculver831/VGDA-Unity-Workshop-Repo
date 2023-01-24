@@ -10,10 +10,15 @@ public class Health : MonoBehaviour
 
     [SerializeField]
     public RoomManager room;
-
-    [SerializeField]
-    Animation deathAnimation;
+    private Animator animator;
     public bool IsHurt { get; private set; } = false;
+
+    protected void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+
     ///-///////////////////////////////////////////////////////////
     ///
     public virtual void ModifyHealth(float value)
@@ -27,6 +32,7 @@ public class Health : MonoBehaviour
 
         if (totalHealth <= 0)
         {
+            animator.Play("Death");
             //TODO: Remove and add to inherited EnemyHealth class
             if(room)
                 room.CheckCount();
@@ -35,8 +41,11 @@ public class Health : MonoBehaviour
         }
     }
 
+    ///-///////////////////////////////////////////////////////////
+    ///
     public virtual IEnumerator Hurting()
     {
+        animator.Play("Hurt");
         IsHurt = true;
         yield return new WaitForSeconds(0.5f);
         IsHurt = false;

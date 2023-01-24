@@ -53,28 +53,26 @@ public class Enemy : MonoBehaviour
 
             Debug.LogFormat("I cannot be moved");
         }
+
+        CheckLineOfSight();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 direction = (player.position - rb.position);
-        direction.Normalize();
-
-
-
-        LineOfSight(direction);
+        
       
     }
 
     ///-///////////////////////////////////////////////////////////
     ///
-    void LineOfSight(Vector2 direction)
+    void CheckLineOfSight()
     {
 
         // Check if we are close enough to view the player and that they are actually visible to our eyes
         Debug.DrawRay(transform.position, player.position);
-        if ((Vector3.Distance(transform.position, player.position) <= LOS) && (Physics.Raycast(rb.position, player.position- rb.position, (int)LOS, LOSLayer )))
+        if ((Vector3.Distance(transform.position, player.position) <= LOS) && (Physics.Raycast(rb.position, player.position - rb.position, (int)LOS, LOSLayer ))
+            && Health.IsHurt == false)
         {
             agent.SetDestination(player.position);
 
@@ -112,7 +110,7 @@ public class Enemy : MonoBehaviour
     ///
     IEnumerator Attack()
     {
-        characterAnimator.SetTrigger("Attacking");
+        characterAnimator.Play("Attack");
 
         yield return new WaitForSeconds(1f);
 

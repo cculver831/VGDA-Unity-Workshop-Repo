@@ -3071,6 +3071,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1bc3cb927396444ba1399abf603f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _totalHealth: 100
+  room: {fileID: 0}
   health: 100
 --- !u!65 &174358111
 BoxCollider:
@@ -3224,7 +3226,7 @@ MonoBehaviour:
   characterAnimator: {fileID: 174358118}
   agent: {fileID: 174358115}
   weapon: {fileID: 0}
-  Health: {fileID: 0}
+  Health: {fileID: 174358110}
 --- !u!95 &174358118
 Animator:
   serializedVersion: 4
@@ -22509,6 +22511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1bc3cb927396444ba1399abf603f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _totalHealth: 25
+  room: {fileID: 0}
   health: 100
 --- !u!195 &681244660
 NavMeshAgent:
@@ -22997,7 +23001,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _totalHealth: 25
   room: {fileID: 0}
-  deathAnimation: {fileID: 0}
   currentHealth: 0
   slider: {fileID: 414928990}
 --- !u!95 &880197659

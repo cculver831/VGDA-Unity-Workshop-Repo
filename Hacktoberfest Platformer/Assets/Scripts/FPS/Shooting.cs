@@ -45,7 +45,7 @@ public class Shooting : MonoBehaviour
 
                 if (hit.transform.CompareTag("Enemy"))
                 {
-                    hit.transform.GetComponent<EnemyHealth>().ModifyHP(-damage);
+                    hit.transform.GetComponent<EnemyHealth>().ModifyHealth(-damage);
                 }
             }
             else
