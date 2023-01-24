@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public enum Scenes
 {
-    DUNGEON = 0,
+    START = 0,
     LEVEL1 = 1,
     LEVEL2 = 2,
     LEVEL3 = 3,
@@ -15,7 +15,7 @@ public class EndLevel : MonoBehaviour
 {
 
     public Scenes scene;
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if(collision.tag == "Player")
         {

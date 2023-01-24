@@ -110,11 +110,11 @@ public class Enemy : MonoBehaviour
     ///
     IEnumerator Attack()
     {
-        characterAnimator.Play("Attack");
+        
 
         yield return new WaitForSeconds(1f);
 
-
+        characterAnimator.Play("Attack");
     }
 
 
