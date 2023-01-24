@@ -2,25 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.AI;
 
 public class Enemy : MonoBehaviour
 {
     [Range(1, 10)]
     public float speed = 3f;
     [Range(0, 20)]
-    public float LOS;
+    public float LOS =5f;
     [Range(0f, 5f)]
-    public float attackDistance;
+    public float attackDistance = 2f;
 
     private float meleeRange => attackDistance;
-    Rigidbody2D player;
-
+    Rigidbody player;
+    [Tooltip("The layer we can see an object. necessary to stop AI form wall hacks")]
     [SerializeField]
-    Rigidbody2D rb;
+    LayerMask LOSLayer;
+    [SerializeField]
+    Rigidbody rb;
     [SerializeField]
     Animator characterAnimator;
     [SerializeField]
-    Animator weaponAnimator;
+    UnityEngine.AI.NavMeshAgent agent;
+
     [SerializeField]
     Transform weapon;
 
@@ -33,7 +37,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player").GetComponent<Rigidbody>();
 
     }
 
@@ -43,16 +47,21 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         UpdateMovementAnimation();
+        //|| agent.velocity.sqrMagnitude == 0f
+        if (!agent.hasPath )
+        {
+
+            Debug.LogFormat("I cannot be moved");
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 direction = (player.position - rb.position);
+        Vector3 direction = (player.position - rb.position);
         direction.Normalize();
 
-        if(weapon != null)
-            WeaponFollow(direction);
+
 
         LineOfSight(direction);
       
@@ -62,81 +71,54 @@ public class Enemy : MonoBehaviour
     ///
     void LineOfSight(Vector2 direction)
     {
-        if (Vector3.Distance(transform.position, player.position) <= LOS && Health.IsHurt == false)
+
+        // Check if we are close enough to view the player and that they are actually visible to our eyes
+        Debug.DrawRay(transform.position, player.position);
+        if ((Vector3.Distance(transform.position, player.position) <= LOS) && (Physics.Raycast(rb.position, player.position- rb.position, (int)LOS, LOSLayer )))
         {
+            agent.SetDestination(player.position);
+
             if (Vector3.Distance(transform.position, player.position) < attackDistance)
             {
 
                 StartCoroutine(Attack());
+                agent.isStopped = true;
 
+                Debug.LogFormat("attacking");
                 isMoving = false;
             }
             else
             {
+
+                agent.isStopped = false;
+                Debug.LogFormat("agent destination set");
                 //Move towards direction
-                rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+                //rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
                 isMoving = true;
 
-                Flip(direction, GetComponent<SpriteRenderer>()); ;
+               
             }
 
         }
         else
         {
             isMoving = false;
+            agent.isStopped = false;
         }
     }
 
-    ///-///////////////////////////////////////////////////////////
-    ///
-    void WeaponFollow(Vector2 direction)
-    {
-
-        //Move weapon within radius around enemy
-        Vector2 v = player.position - rb.position;
-        v = Vector2.ClampMagnitude(v, meleeRange);
-        Vector2 newLocation = rb.position + v;
-        weapon.transform.position = Vector2.MoveTowards(weapon.transform.position, newLocation, 1f);
-
-
-        //Look at player
-        float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        weapon.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
-    }
-
+  
     ///-///////////////////////////////////////////////////////////
     ///
     IEnumerator Attack()
     {
+        characterAnimator.SetTrigger("Attacking");
 
         yield return new WaitForSeconds(1f);
 
-        if(weapon != null)
-        {
-            weaponAnimator.SetBool("isAttacking", true);
-        }
-        else
-        {
-            characterAnimator.SetBool("isAttacking", true);
-        }
+
     }
 
-
-
-    ///-///////////////////////////////////////////////////////////
-    ///
-    private void Flip(Vector2 input, SpriteRenderer sr)
-    {
-
-        if (input.x > 0f)
-        {
-            sr.flipX = false;
-        }
-        else if (input.x < 0f)
-        {
-            sr.flipX = true;
-        }
-    }
 
 
     ///-///////////////////////////////////////////////////////////
