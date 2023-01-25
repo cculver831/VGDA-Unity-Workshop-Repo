@@ -2,53 +2,94 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class RoomManager : MonoBehaviour
 {
-
-    public List<Enemy> enemies;
+    [SerializeField]
+    private List<Enemy> enemies;
     public int roomNumber;
-    public Item exitKey;
+    public List<Item> itemsToDrop;
     public Door Door;
     [SerializeField]
     private int totalEnemies = 0;
     [SerializeField]
-    private int deathCount = -1;
+    private int totalCount = -1;
 
-    private void Awake()
-    {
-        foreach (Enemy e in enemies)
-        {
 
-            //Debug.LogFormat("setting room");
-            e.Health.room = this;
-        }
-    }
+    ///-///////////////////////////////////////////////////////////
+    ///
     private void Start()
     {
-        //assign door and key to room number value
-        exitKey.ID = roomNumber;
-        if(Door)
-            Door.ID = roomNumber;
-        exitKey.gameObject.SetActive(false);
-        totalEnemies = enemies.Count;
+        SetItem();
+        SetDoor();
+        SetEnemies();
         CheckCount();
+    }
+
+    ///-///////////////////////////////////////////////////////////
+    ///
+    private void SetItem()
+    {
+        if (itemsToDrop.Count > 0)
+        {
+            foreach (Item i in itemsToDrop)
+            {
+                i.gameObject.SetActive(false);
+
+                i.ID = roomNumber;
+            }
+        }
+    }
 
 
+    ///-///////////////////////////////////////////////////////////
+    ///
+    private void SetDoor()
+    {
+        Transform door = transform.Find("Door");
+        if (door)
+        {
+            Door = door.GetComponent<Door>();
+            Door.ID = roomNumber;
+        }
+    }
+
+    ///-///////////////////////////////////////////////////////////
+    ///
+    private void SetEnemies()
+    {
+        Transform Enemies = transform.Find("Enemies");
+
+        if (Enemies.gameObject.activeSelf)
+        {
+            foreach (Transform child in Enemies)
+            {
+                Enemy e = child.GetComponent<Enemy>();
+                e.Health.room = this;
+                enemies.Add(e);
+            }
+        }
+
+        totalEnemies = enemies.Count;
     }
 
     ///-///////////////////////////////////////////////////////////
     ///
     public void CheckCount()
     {
-        deathCount++;
-        //Debug.LogFormat("checking count  {1} {2}", deathCount, totalEnemies);
+        totalCount++;
 
-        if (deathCount >= totalEnemies)
+        if (totalCount >= totalEnemies)
         {
+            foreach (Item i in itemsToDrop)
+            {
+                i.gameObject.SetActive(true);
 
-            Debug.LogFormat("displaying key");
-            exitKey.gameObject.SetActive(true);
-            
+            }
+
+            Door.GetComponent<Animator>().SetBool("isOpen", true);
+
         }
     }
 }
