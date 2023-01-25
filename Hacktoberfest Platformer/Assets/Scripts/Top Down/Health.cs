@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
 
     [SerializeField]
     public RoomManager room;
-    private Animator animator;
+    protected Animator animator;
     public bool IsHurt { get; private set; } = false;
 
     protected void Start()
@@ -23,16 +23,21 @@ public class Health : MonoBehaviour
     ///
     public virtual void ModifyHealth(float value)
     {
-        if(value < 0)
+
+        Debug.LogFormat("getting hurt");
+        _totalHealth += value;
+
+        if (value < 0 && IsHurt == false)
         {
+           
             StartCoroutine(Hurting());
         }
 
-        _totalHealth += value;
+       
 
         if (totalHealth <= 0)
         {
-            animator.Play("Death");
+            //animator.Play("Death");
             //TODO: Remove and add to inherited EnemyHealth class
             if(room)
                 room.CheckCount();
@@ -45,9 +50,12 @@ public class Health : MonoBehaviour
     ///
     public virtual IEnumerator Hurting()
     {
-        animator.Play("Hurt");
+        
         IsHurt = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
+        
         IsHurt = false;
     }
+
+
 }

@@ -28,4 +28,24 @@ public class EnemyHealth : Health
             Destroy(gameObject);
         }
     }
+
+    public override IEnumerator Hurting()
+    {
+        SetHurtTrue();
+        return base.Hurting();
+    }
+    ///-///////////////////////////////////////////////////////////
+    ///
+    public void SetHurtTrue()
+    {
+        animator.SetBool("isHurt", true);
+    }
+
+    ///-///////////////////////////////////////////////////////////
+    ///
+    public void SetHurtFalse()
+    {
+        Debug.Log("setting hurt false");
+        animator.SetBool("isHurt", false);
+    }
 }

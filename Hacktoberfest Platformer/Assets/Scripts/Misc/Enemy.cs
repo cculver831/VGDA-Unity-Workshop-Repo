@@ -103,9 +103,29 @@ public class Enemy : MonoBehaviour
             isMoving = false;
             agent.isStopped = false;
         }
+
+        Flip();
     }
 
-  
+    ///-///////////////////////////////////////////////////////////
+    ///
+    private void Flip()
+    {
+        float DotResult = Vector3.Dot(transform.forward, agent.destination);
+        //Right
+        if (DotResult > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        //Left
+        else if(DotResult < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+    }
+
+
     ///-///////////////////////////////////////////////////////////
     ///
     IEnumerator Attack()
@@ -113,8 +133,8 @@ public class Enemy : MonoBehaviour
         
 
         yield return new WaitForSeconds(1f);
-
-        characterAnimator.Play("Attack");
+        if(Health.IsHurt == false)
+            characterAnimator.Play("Attack");
     }
 
 

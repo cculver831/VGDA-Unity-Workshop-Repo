@@ -10,7 +10,7 @@ public class RoomManager : MonoBehaviour
     private List<Enemy> enemies;
     public int roomNumber;
     public List<Item> itemsToDrop;
-    public Door Door;
+    public List<Door> Doors;
     [SerializeField]
     private int totalEnemies = 0;
     [SerializeField]
@@ -47,11 +47,15 @@ public class RoomManager : MonoBehaviour
     ///
     private void SetDoor()
     {
-        Transform door = transform.Find("Door");
+        Transform door = transform.Find("Doors");
         if (door)
         {
-            Door = door.GetComponent<Door>();
-            Door.ID = roomNumber;
+            foreach (Transform child in door)
+            {
+                Door d = child.GetComponent<Door>();
+                d.ID = roomNumber;
+                Doors.Add(d);
+            }
         }
     }
 
@@ -88,7 +92,13 @@ public class RoomManager : MonoBehaviour
 
             }
 
-            Door.GetComponent<Animator>().SetBool("isOpen", true);
+            foreach (Door child in Doors)
+            {
+                child.animator.SetBool("isOpen", true);
+                
+            }
+
+            
 
         }
     }
