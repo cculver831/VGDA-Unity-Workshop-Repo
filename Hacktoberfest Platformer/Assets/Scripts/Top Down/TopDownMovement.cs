@@ -133,6 +133,7 @@ public class TopDownMovement : MonoBehaviour
         if (inputValue.ReadValue<Vector2>() != Vector2.zero)
         {
             rotationInput = inputValue.ReadValue<Vector2>();
+
         }
 
     }
@@ -155,5 +156,26 @@ public class TopDownMovement : MonoBehaviour
     }
     #endregion
 
+    #region Mobile Controls
+
+    ///-///////////////////////////////////////////////////////////
+    /// Combine PlayerMovement and sword movement based on analog stick
+    /// 
+    public void OnMove()
+    {
+        //movementInput = inputValue.ReadValue<Vector2>();
+    }
+
+
+    ///-///////////////////////////////////////////////////////////
+    ///
+    public void OnFire()
+    {
+
+        //Debug.LogFormat("firing");
+        attackAnimator.SetBool("isAttacking", true);
+
+    }
+    #endregion
 
 }

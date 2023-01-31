@@ -22,7 +22,7 @@ public class DisplayControlScheme : MonoBehaviour
     }
     public void OnChangeInput(PlayerInput pl)
     {
-       if(pl.currentControlScheme.Equals("Gamepad"))
+       if(pl!= null && pl.currentControlScheme.Equals("Gamepad"))
         {
             keyboardControls.SetActive(false);
             gamepadControls.SetActive(true);
