@@ -10,6 +10,9 @@ public class SceneTransition : MonoBehaviour
     Animator animator;
 
     private int nextScene;
+
+    ///-///////////////////////////////////////////////////////////
+    ///
     private void Awake()
     {
         Instance = this;
