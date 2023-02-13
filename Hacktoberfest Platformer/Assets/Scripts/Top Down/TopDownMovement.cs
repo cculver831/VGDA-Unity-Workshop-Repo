@@ -89,7 +89,7 @@ public class TopDownMovement : MonoBehaviour
             weapon.rotation = Quaternion.Euler(0f, 0f, zRotation);
             //Flip(direction, weapon.gameObject.GetComponentInChildren<SpriteRenderer>());
         }
-        
+
 
     }
 
@@ -130,9 +130,31 @@ public class TopDownMovement : MonoBehaviour
     ///
     public void OnLook(CallbackContext inputValue)
     {
+        //Vector2 playerOffSet = new Vector2()
+
         if (inputValue.ReadValue<Vector2>() != Vector2.zero)
         {
-            rotationInput = inputValue.ReadValue<Vector2>();
+
+            // If the current input is a mouse
+            if (inputValue.control.displayName == "Delta")
+            {
+                // Find the position of the mouse on the screen
+                Vector3 mousePos = Mouse.current.position.ReadValue();
+
+                // Convert that mouse position to a coordinate in world space
+                Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+
+                rotationInput = Worldpos - transform.position;
+
+
+            }
+            // If the current input is a gamepad
+            else if (inputValue.control.displayName == "Right Stick")
+            {
+                // Read rotationInput straight from the joystick movement
+                rotationInput = inputValue.ReadValue<Vector2>();
+
+            }
         }
 
     }
