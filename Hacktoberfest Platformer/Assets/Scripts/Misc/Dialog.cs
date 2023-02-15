@@ -12,6 +12,7 @@ public class Dialog : MonoBehaviour
     public string[] lines;
     public float textSpeed;
     private int index;
+    private bool isDialogPlaying = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +24,12 @@ public class Dialog : MonoBehaviour
     ///
     public void StartDialog(string[] textToDisplay)
     {
+        if (isDialogPlaying) { return; }
         textComponent.text = string.Empty;
+
         Debug.LogFormat("dialog received");
+
+
         lines = (string[])textToDisplay.Clone();
         index = 0;
         StartCoroutine(TypeLine(lines));
@@ -36,6 +41,7 @@ public class Dialog : MonoBehaviour
     ///
     public void OnReadDialog(CallbackContext inputValue)
     {
+        
         //Debug.LogFormat("input value {0}", inputValue.performed);
         if (inputValue.performed)
         {
@@ -56,6 +62,7 @@ public class Dialog : MonoBehaviour
     ///
     IEnumerator TypeLine(string[] lines)
     {
+        isDialogPlaying = true;
         foreach (char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
@@ -76,7 +83,9 @@ public class Dialog : MonoBehaviour
         }
         else
         {
+           
             gameObject.SetActive(false);
+            isDialogPlaying = false;
         }
     }
 }
