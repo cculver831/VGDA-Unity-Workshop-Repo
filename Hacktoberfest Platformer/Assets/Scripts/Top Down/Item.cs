@@ -9,6 +9,8 @@ public class Item : MonoBehaviour
     public ItemType type = ItemType.Key;
     public int ID;
 
+    ///-///////////////////////////////////////////////////////////
+    /// When player touches item, add to inventory
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag != "Player") return;

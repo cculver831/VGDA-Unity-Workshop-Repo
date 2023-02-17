@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Duplicate script lol
 public class DealDamage : MonoBehaviour
 {
     [TagSelector]

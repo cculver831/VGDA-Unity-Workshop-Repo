@@ -80,6 +80,7 @@ public class RoomManager : MonoBehaviour
     {
         totalCount++;
 
+        //If we defeat all enemes in the room, show our items and unlock the door
         if (totalCount >= totalEnemies)
         {
             foreach (Item i in itemsToDrop)

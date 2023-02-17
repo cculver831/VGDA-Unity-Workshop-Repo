@@ -13,7 +13,7 @@ public enum Scenes
 }
 public class EndLevel : MonoBehaviour
 {
-
+    [Tooltip("Edit the enum values to reflect  build scene index ")]
     public Scenes scene;
     private void OnTriggerEnter2D(Collider2D collision)
     {

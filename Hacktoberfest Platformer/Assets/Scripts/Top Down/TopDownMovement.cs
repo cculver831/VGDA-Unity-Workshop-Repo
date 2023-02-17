@@ -87,7 +87,7 @@ public class TopDownMovement : MonoBehaviour
             // Rotate towards w/ stick movement
             float zRotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             weapon.rotation = Quaternion.Euler(0f, 0f, zRotation);
-            //Flip(direction, weapon.gameObject.GetComponentInChildren<SpriteRenderer>());
+
         }
 
 
@@ -98,7 +98,7 @@ public class TopDownMovement : MonoBehaviour
     ///
     private void Flip(Vector2 input, SpriteRenderer sr)
     {
-
+        //Flip sprite based on player x input
         if(input.x > 0f)
         {
             sr.flipX = false;
@@ -126,6 +126,9 @@ public class TopDownMovement : MonoBehaviour
 
 
     #region ControllerCallbacks
+
+    //CHALLENGE: Add controller callback for any button
+
     ///-///////////////////////////////////////////////////////////
     ///
     public void OnLook(CallbackContext inputValue)

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TextPromptTrigger : MonoBehaviour
 {
-    [TagSelector]
-    public string tagFilter = "";
     public string[] lines;
     public float textSpeed;
 

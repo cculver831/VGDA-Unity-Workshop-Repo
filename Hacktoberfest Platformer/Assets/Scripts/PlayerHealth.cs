@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : Health
 {
 
+    //CHALLENGE hook up slider to player health
     public Slider slider;
 
     ///-///////////////////////////////////////////////////////////
@@ -37,8 +38,12 @@ public class PlayerHealth : Health
             
         }
 
+        //if our health is to low, we die
         if (totalHealth <= 0)
         {
+    
+            //CHALLENGE: Add a death animation to play here
+
             //restart the game
             TransitionManager.Instance.SetEndLevel(0);
             

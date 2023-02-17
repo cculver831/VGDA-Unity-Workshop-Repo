@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
+// Link to tutorial for dialog system: https://www.youtube.com/watch?v=8oTYabhj248
 public class Dialog : MonoBehaviour
 {
 
@@ -13,11 +14,11 @@ public class Dialog : MonoBehaviour
     public float textSpeed;
     private int index;
     private bool isDialogPlaying = false;
+
     // Start is called before the first frame update
     void Start()
     {
         textComponent.text = string.Empty;
-        //StartDialog();
     }
 
     ///-///////////////////////////////////////////////////////////
@@ -29,7 +30,7 @@ public class Dialog : MonoBehaviour
 
         Debug.LogFormat("dialog received");
 
-
+        //CHALLENGE: cloning the string is a bit unnecessary, find a way to copy the string
         lines = (string[])textToDisplay.Clone();
         index = 0;
         StartCoroutine(TypeLine(lines));

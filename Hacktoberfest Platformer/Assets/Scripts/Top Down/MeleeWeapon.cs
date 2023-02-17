@@ -18,23 +18,28 @@ public class MeleeWeapon : MonoBehaviour
 
     [SerializeField]
     private AudioSource audio;
+
+
     ///-///////////////////////////////////////////////////////////
     ///
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //if we hit an object with a correct tag, modify it's health
         if (collision.collider.transform.tag == TagFilter)
         {
             if(collision.collider.transform.tag == "Player")
                 Debug.LogFormat("player hit {0}", damageDealt);
 
 
-            //Modify Health
+            //Modify Health here
             Health health = collision.gameObject.GetComponent<Health>();
 
             if(health.IsHurt == false)
             {
-                if(audio)
+                if (audio)
+                {
                     audio.Play();
+                }
 
                 health.ModifyHealth(-damageDealt);
 
