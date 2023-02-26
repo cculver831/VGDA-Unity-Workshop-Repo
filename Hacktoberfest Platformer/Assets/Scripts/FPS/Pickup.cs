@@ -21,7 +21,7 @@ public class Pickup : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.GetComponent<Shooting>().currentAmmo += ammoAmount;
+            other.GetComponent<Shooting>().GiveAmmo(ammoAmount);
             Destroy(gameObject);
         }
     }
