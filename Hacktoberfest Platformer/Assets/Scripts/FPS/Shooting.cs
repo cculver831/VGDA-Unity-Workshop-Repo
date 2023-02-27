@@ -61,7 +61,7 @@ public class Shooting : MonoBehaviour
 
     ///-///////////////////////////////////////////////////////////
     ///
-    public void GiveAmmo(int amount)
+    public void ModifyAmmo(int amount)
     {
         // give some ammo, then update the ammo UI
         currentAmmo += amount;
