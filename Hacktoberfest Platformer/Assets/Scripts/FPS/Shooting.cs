@@ -59,6 +59,16 @@ public class Shooting : MonoBehaviour
         }
     }
 
+    ///-///////////////////////////////////////////////////////////
+    ///
+    public void ModifyAmmo(int amount)
+    {
+        // give some ammo, then update the ammo UI
+        currentAmmo += amount;
+
+        AmmoGUI.text = totalAmmo.ToString() + " / " + currentAmmo.ToString();
+    }
+
 
     ///-///////////////////////////////////////////////////////////
     ///
