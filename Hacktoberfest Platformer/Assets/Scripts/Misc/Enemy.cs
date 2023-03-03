@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
     public Health Health;
     private bool isMoving = false;
 
+    private bool isAttacking = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -78,8 +80,11 @@ public class Enemy : MonoBehaviour
 
             if (Vector3.Distance(transform.position, player.position) < attackDistance)
             {
-
-                StartCoroutine(Attack());
+                if (!isAttacking)
+                {
+                    StartCoroutine(Attack());
+                }
+                //StartCoroutine(Attack());
                 agent.isStopped = true;
 
                 Debug.LogFormat("attacking");
@@ -130,11 +135,11 @@ public class Enemy : MonoBehaviour
     ///
     IEnumerator Attack()
     {
-        
-
+        isAttacking = true;
         yield return new WaitForSeconds(1f);
         if(Health.IsHurt == false)
             characterAnimator.Play("Attack");
+        isAttacking = false;
     }
 
 
