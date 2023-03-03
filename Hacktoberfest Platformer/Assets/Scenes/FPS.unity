@@ -15082,12 +15082,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 880197655}
   animator: {fileID: 880197659}
-  moveSpeed: 5
-  mouseSensitivity: 0.1
-  maxLookAngle: 160
-  minLookAngle: 10
   viewCam: {fileID: 45052096}
   playerInput: {fileID: 880197653}
+  moveSpeed: 5
+  mouseSensitivity: 0.1
 --- !u!54 &880197655
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15188,7 +15186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
-  player: {fileID: 0}
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64

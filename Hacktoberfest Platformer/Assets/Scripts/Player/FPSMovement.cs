@@ -6,28 +6,30 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class FPSMovement : MonoBehaviour
 {
-
+    //Singleton Reference
     public static FPSMovement instance; 
-
     public Rigidbody rb;
     public Animator animator;
+    public Transform viewCam;
+    [SerializeField]
+    private PlayerInput playerInput;
 
+    [Range(1, 10)]
     public float moveSpeed = 5f;
+    [Range(0,1)]
+    public float mouseSensitivity = 0.1f;
 
     public Vector3 movementInput { get; set; }
     public Vector2 reversedMovementInput { get; set; }
-    Vector2 rotationInput;
-    Vector3 moveHorizontal;
-    Vector3 moveVertical;
 
-    public float mouseSensitivity = 1f;
-    public float maxLookAngle = 160;
-    public float minLookAngle = 10;
+    //Private Variables
+    private Vector2 rotationInput;
+    private Vector3 moveHorizontal;
+    private Vector3 moveVertical;
+    //Angles that stop the player from looking 360 degrees behind them
+    private float maxLookAngle = 160;
+    private float minLookAngle = 10;
 
-    public Transform viewCam;
-
-    [SerializeField]
-    private PlayerInput playerInput;
     // Start is called before the first frame update
     void Start()
     {
