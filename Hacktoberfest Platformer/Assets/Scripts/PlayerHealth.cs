@@ -52,8 +52,12 @@ public class PlayerHealth : Health
     ///
     public override IEnumerator Hurting()
     {
-        //Shake screen when hurt
-        CinemachineShake.Instance.Shakecamera();
+        // check if cinemachine instance exists
+        if (CinemachineShake.Instance != null)
+            //Shake screen when hurt
+            CinemachineShake.Instance.Shakecamera();
+        else
+            Debug.Log("Cinemachine is missing!");
 
         return base.Hurting();
 
