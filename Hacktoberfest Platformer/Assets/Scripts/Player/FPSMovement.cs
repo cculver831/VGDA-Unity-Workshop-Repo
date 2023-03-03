@@ -62,6 +62,7 @@ public class FPSMovement : MonoBehaviour
         if (movementInput != Vector3.zero)
         {
             Debug.Log("Moving");
+
             //Multiply our movement vectors by speed
             rb.velocity = (moveVertical + moveHorizontal)* moveSpeed;
             animator.SetBool("Running", true);
@@ -69,6 +70,7 @@ public class FPSMovement : MonoBehaviour
         else
         {
             rb.velocity = Vector2.zero;
+
             animator.SetBool("Running", false);
         }
 
@@ -84,9 +86,6 @@ public class FPSMovement : MonoBehaviour
     {
 
             rotationInput = inputValue.ReadValue<Vector2>();
-            
-
-
     }
     ///-///////////////////////////////////////////////////////////
     ///
