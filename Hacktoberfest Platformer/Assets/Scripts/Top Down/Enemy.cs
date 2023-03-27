@@ -146,15 +146,19 @@ public class Enemy : MonoBehaviour
     ///
     void UpdateMovementAnimation()
     {
-        if (isMoving)
-        {
-            characterAnimator.SetBool("isRunning", true);
 
+        if (characterAnimator.parameterCount > 0) { 
+
+            if(isMoving)
+            {
+                characterAnimator.SetBool("isRunning", true);
+            }
+            else
+            {
+                characterAnimator.SetBool("isRunning", false);
+            }
         }
-        else
-        {
-            characterAnimator.SetBool("isRunning", false);
-        }
+            
 
     }
 }
