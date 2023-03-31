@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,8 +8,6 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class TopDownMovement : MonoBehaviour
 {
-
-
     
     public Vector2 movementInput {get; private set;}
     Vector2 rotationInput;
@@ -25,6 +24,8 @@ public class TopDownMovement : MonoBehaviour
     Transform weapon;
     [Range(0,1)]
     public float collisionOffset = 0.05f;
+
+    [Header("Network Objects")]
     public GameObject playerCamera;
     public GameObject PlayerUI;
     public TextMeshProUGUI playerName;
@@ -70,6 +71,7 @@ public class TopDownMovement : MonoBehaviour
         HandleRotation(rotationInput);
 
         Flip(movementInput, GetComponent<SpriteRenderer>());
+       
     }
 
 
@@ -99,9 +101,9 @@ public class TopDownMovement : MonoBehaviour
 
     }
 
-
+    [PunRPC]
     ///-///////////////////////////////////////////////////////////
-    ///
+    /// TODO: make RPC
     private void Flip(Vector2 input, SpriteRenderer sr)
     {
         //Flip sprite based on player x input
