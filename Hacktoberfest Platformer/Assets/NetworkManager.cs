@@ -30,7 +30,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
     ///-///////////////////////////////////////////////////////////
-    ///
+    /// Called when pressing play
     public void ConnectToServer()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -38,7 +38,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     ///-///////////////////////////////////////////////////////////
-    ///
+    /// Called when player successfully connects to Master
     public override void OnConnectedToMaster()
     {
         //Tell console we are connected
@@ -59,11 +59,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     ///-///////////////////////////////////////////////////////////
     ///
-    public void initializeRoom(int defaultRoomIndex)
+    public void InititalizeRoom(int defaultRoomIndex)
     {
         DefaultRoom roomSettings = defaultRooms[defaultRoomIndex];
 
-        //LOad Scene
+        //Load Scene
         PhotonNetwork.LoadLevel(roomSettings.sceneIndex);
         //Create new room options, will change to 2 players probabaly
         RoomOptions roomOptions = new RoomOptions();

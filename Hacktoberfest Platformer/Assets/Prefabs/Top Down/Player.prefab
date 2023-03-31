@@ -168,6 +168,7 @@ MonoBehaviour:
   TagFilter: Enemy
   knockBackForce: 5
   damageDealt: 5
+  audio: {fileID: 0}
 --- !u!60 &8464294178601547682
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -362,7 +363,6 @@ MonoBehaviour:
   attackAnimator: {fileID: 8464294178601547689}
   playerInput: {fileID: 8464294179521783064}
   moveSpeed: 5
-  health: {fileID: 0}
   weapon: {fileID: 8464294178132728931}
   collisionOffset: 0.05
   movementFilter:
@@ -392,8 +392,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totalHealth: 25
+  room: {fileID: 0}
   deathAnimation: {fileID: 0}
-  currentHealth: 0
   slider: {fileID: 0}
 --- !u!95 &8464294179521783061
 Animator:
@@ -552,6 +552,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9fc2e43e-e140-482d-a7b4-535362fc7cf8
     m_ActionName: UI/ReadDialog[/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 833fda33-b5b0-4378-a4e2-8e5bb6d423b8
+    m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3f690c13-51be-45f0-bc67-1577c7f500c6
+    m_ActionName: Player/Play[/Keyboard/anyKey,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

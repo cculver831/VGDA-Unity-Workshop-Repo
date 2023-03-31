@@ -6,6 +6,9 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class TopDownMovement : MonoBehaviour
 {
+
+
+    
     public Vector2 movementInput {get; private set;}
     Vector2 rotationInput;
     [SerializeField]
@@ -21,7 +24,8 @@ public class TopDownMovement : MonoBehaviour
     Transform weapon;
     [Range(0,1)]
     public float collisionOffset = 0.05f;
-
+    public GameObject playerCamera;
+    public GameObject PlayerUI;
     public ContactFilter2D movementFilter;
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
@@ -145,7 +149,7 @@ public class TopDownMovement : MonoBehaviour
                 Vector3 mousePos = Mouse.current.position.ReadValue();
 
                 // Convert that mouse position to a coordinate in world space
-                Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+                Vector3 Worldpos = playerCamera.GetComponent<Camera>().ScreenToWorldPoint(mousePos);
 
                 rotationInput = Worldpos - transform.position;
 

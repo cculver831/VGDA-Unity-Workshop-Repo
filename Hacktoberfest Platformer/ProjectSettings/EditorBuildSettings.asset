@@ -5,20 +5,20 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Top Down Example.unity
+    path: Assets/Scenes/MultiplayerTestScene.unity
+    guid: 04db19a5d3bb42d4293718502a9cfb2d
+  - enabled: 1
+    path: Assets/Scenes/TopDownMultiplayerDungeon-1.unity
+    guid: d9894f7be097e2a42b00de84f87e222c
+  - enabled: 1
+    path: Assets/Scenes/TopDownMultiplayerDungeon-2.unity
+    guid: b54df5c09f5f43c46be4138ab32c8987
+  - enabled: 1
+    path: Assets/Scenes/TopDownMultiplayerDungeon-3.unity
+    guid: 466ce30bfa9e15c45bd31ae006ba69af
+  - enabled: 1
+    path: Assets/Scenes/TopDownSinglePlayer.unity
     guid: 7e3e1537826a56f4c8e78c8dfeb8cef8
-  - enabled: 0
-    path: Assets/Scenes/Level 1.unity
-    guid: b5cd3e1179ac91d469b6a8772d071567
-  - enabled: 0
-    path: Assets/Scenes/Level 2.unity
-    guid: f8e8c6c775782c643baef15fff3cb08d
-  - enabled: 0
-    path: Assets/Scenes/Level 3.unity
-    guid: d014d74ef7a5a194587d1df121fd5bad
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4834ac534656b734eacebd963f0f6eb3, type: 2}
