@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
@@ -26,6 +27,7 @@ public class TopDownMovement : MonoBehaviour
     public float collisionOffset = 0.05f;
     public GameObject playerCamera;
     public GameObject PlayerUI;
+    public TextMeshProUGUI playerName;
     public ContactFilter2D movementFilter;
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();

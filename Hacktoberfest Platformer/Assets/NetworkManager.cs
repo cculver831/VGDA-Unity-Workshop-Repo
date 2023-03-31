@@ -14,7 +14,10 @@ public class DefaultRoom
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    public GameObject StartUI;
     public GameObject roomUI;
+    public GameObject DungeonList;
+
     public List<DefaultRoom> defaultRooms;
     // Start is called before the first frame update
     void Start()
@@ -54,6 +57,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         Debug.Log("We joined the lobby!");
+        StartUI.SetActive(false);
         roomUI.SetActive(true);
     }
 
@@ -89,5 +93,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("A new player joined the room");
         base.OnPlayerEnteredRoom(newPlayer);
+
+    }
+
+    ///-///////////////////////////////////////////////////////////
+    ///
+    public void GetPlayerNickName(string name)
+    {
+
+        PhotonNetwork.LocalPlayer.NickName = name;
+        roomUI.SetActive(false);
+        DungeonList.SetActive(true);
     }
 }

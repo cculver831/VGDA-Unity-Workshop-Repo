@@ -47,6 +47,7 @@ public class NetworkSpawner : MonoBehaviourPunCallbacks
         player.GetComponentInChildren<TopDownMovement>().PlayerUI.SetActive(true);
         player.GetComponentInChildren<TopDownMovement>().playerCamera.SetActive(true);
         player.GetComponentInChildren<TopDownMovement>().playerCamera.tag = "MainCamera";
+        player.GetComponentInChildren<TopDownMovement>().playerName.text = PhotonNetwork.LocalPlayer.NickName;
         player.GetComponentInChildren<PlayerInput>().enabled = true;
         player.GetComponentInChildren<PlayerHealth>().enabled = true;
 
