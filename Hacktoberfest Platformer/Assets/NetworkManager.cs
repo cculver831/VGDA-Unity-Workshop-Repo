@@ -100,7 +100,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     ///
     public void GetPlayerNickName(string name)
     {
-
         PhotonNetwork.LocalPlayer.NickName = name;
         roomUI.SetActive(false);
         DungeonList.SetActive(true);

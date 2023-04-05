@@ -2519,6 +2519,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8464294179521783062, guid: 7b905c4f632882045be3bfe7767dd63e, type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 1515333725471384407}
+    - target: {fileID: 8464294179521783062, guid: 7b905c4f632882045be3bfe7767dd63e, type: 3}
       propertyPath: health
       value: 
       objectReference: {fileID: 0}
@@ -2797,6 +2801,11 @@ MonoBehaviour:
 --- !u!4 &1515333725471384406 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8464294179521783067, guid: 7b905c4f632882045be3bfe7767dd63e, type: 3}
+  m_PrefabInstance: {fileID: 6949262355962873421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1515333725471384407 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8464294179521783066, guid: 7b905c4f632882045be3bfe7767dd63e, type: 3}
   m_PrefabInstance: {fileID: 6949262355962873421}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1515333725471384411 stripped

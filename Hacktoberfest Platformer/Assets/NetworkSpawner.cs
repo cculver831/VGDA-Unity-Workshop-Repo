@@ -43,23 +43,40 @@ public class NetworkSpawner : MonoBehaviourPunCallbacks
 
         Vector2 randPosition = new Vector2(Random.Range(minx, maxX), Random.Range(minY, maxY));
         GameObject player = PhotonNetwork.Instantiate("NetworkPlayer", randPosition, Quaternion.identity);
-        player.GetComponentInChildren<TopDownMovement>().enabled = true;
-        player.GetComponentInChildren<TopDownMovement>().PlayerUI.SetActive(true);
-        player.GetComponentInChildren<TopDownMovement>().playerCamera.SetActive(true);
-        player.GetComponentInChildren<TopDownMovement>().playerCamera.tag = "MainCamera";
-        player.GetComponentInChildren<TopDownMovement>().playerName.enabled = true;
-        player.GetComponentInChildren<TopDownMovement>().playerName.text = PhotonNetwork.LocalPlayer.NickName;
+
+
+        //set nickName
+        PhotonView photonView = player.GetComponentInChildren<PhotonView>();
+        photonView.Owner.NickName = PhotonNetwork.LocalPlayer.NickName;
+
+
+        TopDownMovement tdm = player.GetComponentInChildren<TopDownMovement>();
+        tdm.playerName.enabled = true;
+        tdm.playerName.text = PhotonNetwork.LocalPlayer.NickName;
+        tdm.enabled = true;
+        tdm.PlayerUI.SetActive(true);
+        tdm.playerCamera.SetActive(true);
+        tdm.playerCamera.tag = "MainCamera";
+
         player.GetComponentInChildren<PlayerInput>().enabled = true;
         player.GetComponentInChildren<PlayerHealth>().enabled = true;
 
 
+        if (photonView)
+        {
+            photonView.Owner.NickName = PhotonNetwork.LocalPlayer.NickName;
+
+            photonView.RPC("SetPlayerName", RpcTarget.OthersBuffered, photonView.ViewID);
+        }
+
+
     }
+
+    
 
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-
-
 
         StartCoroutine(SpawnPlayer());
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-public class TopDownMovement : MonoBehaviour
+public class TopDownMovement : MonoBehaviourPun
 {
     
     public Vector2 movementInput {get; private set;}
@@ -19,6 +19,9 @@ public class TopDownMovement : MonoBehaviour
     private Animator attackAnimator;
     [SerializeField]
     private PlayerInput playerInput;
+    [SerializeField]
+    private SpriteRenderer sr;
+    private PhotonView pv;
     public float moveSpeed = 1f;
     [SerializeField]
     Transform weapon;
@@ -39,6 +42,7 @@ public class TopDownMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        pv = GetComponentInParent<PhotonView>();
 
     }
 
@@ -70,7 +74,7 @@ public class TopDownMovement : MonoBehaviour
 
         HandleRotation(rotationInput);
 
-        Flip(movementInput, GetComponent<SpriteRenderer>());
+        Flip();
        
     }
 
@@ -101,22 +105,40 @@ public class TopDownMovement : MonoBehaviour
 
     }
 
-    [PunRPC]
+    
     ///-///////////////////////////////////////////////////////////
     /// TODO: make RPC
-    private void Flip(Vector2 input, SpriteRenderer sr)
+    public void Flip()
     {
         //Flip sprite based on player x input
-        if(input.x > 0f)
-        {
+        if (movementInput.x > 0f && sr.flipX == true) 
+        { 
             sr.flipX = false;
+            pv.RPC("NetworkFlip", RpcTarget.OthersBuffered, false);
         }
-        else if(input.x < 0f)
+        else if(movementInput.x < 0f && sr.flipX == false)
         {
             sr.flipX = true;
+            pv.RPC("NetworkFlip", RpcTarget.OthersBuffered, true);
         }
+
+
+        
     }
 
+    [PunRPC]
+    public void NetworkFlip(bool val)
+    {
+        sr.flipX = val;
+    }
+
+    [PunRPC]
+    public void SetPlayerName(int id)
+    {
+        PhotonView view = PhotonView.Find(id);
+        playerName.text = view.Owner.NickName;
+        playerName.enabled = true;
+    }
     ///-///////////////////////////////////////////////////////////
     ///
     void UpdateMovementAnimation()
