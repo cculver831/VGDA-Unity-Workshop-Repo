@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
+using Photon.Pun;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviourPun
 {
 
     public List<Item> items;
@@ -34,7 +35,7 @@ public class Inventory : MonoBehaviour
 
                 if (items.Count == 0)
                 {
-                    interactable.AttemptDialog();
+                    interactable.AttemptDialog(photonView.ViewID);
                 }
                 else
                 {
@@ -52,12 +53,13 @@ public class Inventory : MonoBehaviour
         {
             if (items[i].ID == interactable.ID)
             {
+                photonView.RequestOwnership();
                 interactable.AttemptInteract();
                 return;
             }
         }
 
-        interactable.AttemptDialog();
+        interactable.AttemptDialog(photonView.ViewID);
         
     }
 }

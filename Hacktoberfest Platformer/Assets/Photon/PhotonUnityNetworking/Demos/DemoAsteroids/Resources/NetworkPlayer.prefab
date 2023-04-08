@@ -2467,6 +2467,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3125299527453265961, guid: d11faa4c88659a64c8b273769f9cf963, type: 3}
   m_PrefabInstance: {fileID: 4492552431695869144}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1515333726364065090 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3125299527311288730, guid: d11faa4c88659a64c8b273769f9cf963, type: 3}
+  m_PrefabInstance: {fileID: 4492552431695869144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28cb30daf539c248ac1395cb54f3eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6949262355962873421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2529,7 +2540,7 @@ PrefabInstance:
     - target: {fileID: 8464294179521783062, guid: 7b905c4f632882045be3bfe7767dd63e, type: 3}
       propertyPath: PlayerUI
       value: 
-      objectReference: {fileID: 1515333726670283433}
+      objectReference: {fileID: 1515333725935462927}
     - target: {fileID: 8464294179521783062, guid: 7b905c4f632882045be3bfe7767dd63e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2538,6 +2549,10 @@ PrefabInstance:
       propertyPath: playerName
       value: 
       objectReference: {fileID: 1515333725127386609}
+    - target: {fileID: 8464294179521783062, guid: 7b905c4f632882045be3bfe7767dd63e, type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 1515333726364065090}
     - target: {fileID: 8464294179521783062, guid: 7b905c4f632882045be3bfe7767dd63e, type: 3}
       propertyPath: playerCamera
       value: 
@@ -3028,7 +3043,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7580333079512358829, guid: 221b380e34e08604c8a44b3f8cf3463d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7580333080280278377, guid: 221b380e34e08604c8a44b3f8cf3463d, type: 3}
       propertyPath: m_Name
@@ -3036,7 +3051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7580333080280278377, guid: 221b380e34e08604c8a44b3f8cf3463d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7580333080280278381, guid: 221b380e34e08604c8a44b3f8cf3463d, type: 3}
       propertyPath: m_Pivot.x
@@ -3134,9 +3149,21 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 7580333080322952566, guid: 221b380e34e08604c8a44b3f8cf3463d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7580333080322952570, guid: 221b380e34e08604c8a44b3f8cf3463d, type: 3}
       propertyPath: lines.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7580333080489878009, guid: 221b380e34e08604c8a44b3f8cf3463d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7580333080489878015, guid: 221b380e34e08604c8a44b3f8cf3463d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7580333081543254848, guid: 221b380e34e08604c8a44b3f8cf3463d, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -1,10 +1,11 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 // Duplicate script lol
-public class DealDamage : MonoBehaviour
+public class DealDamage : MonoBehaviourPun
 {
     [TagSelector]
     public string TagFilter = "";
@@ -28,7 +29,8 @@ public class DealDamage : MonoBehaviour
             Health health = collision.gameObject.GetComponent<Health>();
             if (health.IsHurt == false)
             {
-                health.ModifyHealth(-damageDealt);
+
+                photonView.RPC("ModifyHealth", RpcTarget.All, -damageDealt);
 
                 Debug.LogFormat("hit");
 

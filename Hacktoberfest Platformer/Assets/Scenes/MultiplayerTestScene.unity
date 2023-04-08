@@ -1200,10 +1200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1607,7 +1607,7 @@ MonoBehaviour:
   defaultRooms:
   - Name: Dungeon 1
     sceneIndex: 1
-    maxPlayer: 2
+    maxPlayer: 6
   - Name: Dungeon 2
     sceneIndex: 2
     maxPlayer: 2
@@ -1945,8 +1945,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 14da276cf3312ee4ebdd923f966b42a7, type: 2}
+  m_sharedMaterial: {fileID: 6477297087903574867, guid: 14da276cf3312ee4ebdd923f966b42a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2101,8 +2101,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nick Name Here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 14da276cf3312ee4ebdd923f966b42a7, type: 2}
+  m_sharedMaterial: {fileID: 6477297087903574867, guid: 14da276cf3312ee4ebdd923f966b42a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2126,13 +2126,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.1
+  m_fontSize: 26.9
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2266,7 +2266,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -91.1, y: 0}
+  m_AnchoredPosition: {x: 0.0000076293945, y: 0}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564820719
@@ -2372,7 +2372,7 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_RichText: 1
-  m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_GlobalFontAsset: {fileID: 11400000, guid: 14da276cf3312ee4ebdd923f966b42a7, type: 2}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Photon.Pun;
 
 public class MeleeWeapon : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class MeleeWeapon : MonoBehaviour
 
             //Modify Health here
             Health health = collision.gameObject.GetComponent<Health>();
+            PhotonView pv = collision.gameObject.GetComponent<PhotonView>();
 
             if(health.IsHurt == false)
             {
@@ -41,7 +43,7 @@ public class MeleeWeapon : MonoBehaviour
                     audio.Play();
                 }
 
-                health.ModifyHealth(-damageDealt);
+                pv.RPC("ModifyHealth", RpcTarget.All, -damageDealt);
 
 
                 //Apply knockback

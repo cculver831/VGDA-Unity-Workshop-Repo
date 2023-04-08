@@ -6,23 +6,11 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
 
-    public static UIManager instance;
     public Dialog DialogPanel;
 
     public TextMeshProUGUI pointsText;
 
     private int points;
-
-    ///-///////////////////////////////////////////////////////////
-    ///
-
-    private void Awake()
-    {
-        instance = this;
-    }
-
-
-
 
     ///-///////////////////////////////////////////////////////////
     ///

@@ -42,6 +42,10 @@ MonoBehaviour:
   - Flip
   - SetPlayerName
   - NetworkFlip
+  - SetPlayers
+  - AddPlayerToList
+  - ModifyHealth
+  - Die
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviourPun
 {
     [SerializeField] [Range(5, 100)]
     private float _totalHealth = 25;
@@ -13,39 +14,41 @@ public class Health : MonoBehaviour
     public RoomManager room;
 
     [SerializeField]
-    Animation deathAnimation;
+    Animator deathAnimation;
 
-    public bool IsHurt { get; private set; } = false;
+    public bool IsHurt { get; protected set; } = false;
 
     private void Start()
     {
         maxHealth = _totalHealth;
-
-        Debug.LogFormat("setting max health {0}", maxHealth);
+        deathAnimation = GetComponent<Animator>();
+        //Debug.LogFormat("setting max health {0}", maxHealth);
     }
 
-
+    [PunRPC]
     ///-///////////////////////////////////////////////////////////
     ///
     public virtual void ModifyHealth(float value)
     {
+
         if (IsHurt == false)
         {
             if (value < 0)
             {
-                StartCoroutine(Hurting());
+                if(deathAnimation)
+                    deathAnimation.SetTrigger("Hurt");
             }
 
             _totalHealth += value;
 
 
-
             if (totalHealth <= 0)
             {
+                
                 //TODO: Remove and add to inherited EnemyHealth class
                 if (room)
                     room.CheckCount();
-                gameObject.SetActive(false);
+                photonView.RPC("Die", RpcTarget.AllBufferedViaServer);
 
             }
         }
@@ -56,8 +59,21 @@ public class Health : MonoBehaviour
     ///
     public virtual IEnumerator Hurting()
     {
-        IsHurt = true;
         yield return new WaitForSeconds(0.5f);
-        IsHurt = false;
+  
+    }
+
+    [PunRPC]
+    public void Die()
+    {
+
+        Debug.LogFormat("{0} died", gameObject.name);
+        photonView.gameObject.SetActive(false);
+
+    }
+
+    public void SetHurt()
+    {
+        IsHurt = !IsHurt;
     }
 }

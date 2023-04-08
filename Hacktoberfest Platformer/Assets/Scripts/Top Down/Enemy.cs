@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using ExitGames.Client.Photon;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviourPun
 {
     [Range(1, 10)]
     public float speed = 3f;
@@ -23,7 +25,7 @@ public class Enemy : MonoBehaviour
     Animator weaponAnimator;
     [SerializeField]
     Transform weapon;
-
+    private GameObject[] Players;
 
     [SerializeField]
     public Health Health;
@@ -32,10 +34,44 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+       // player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
 
     }
+    private void OnEnable()
+    {
 
+        Debug.LogFormat("listening to callback");
+        PhotonNetwork.AddCallbackTarget(this);
+    }
+
+    private void OnDisable()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
+    // If you have multiple custom events, it is recommended to define them in the used class
+    public const byte UPDATETARGETIST = 1;
+
+
+    ///-///////////////////////////////////////////////////////////
+    ///
+    public void OnEvent(EventData photonEvent)
+    {
+        byte eventCode = photonEvent.Code;
+
+        Debug.LogFormat("received byte info");
+        if (eventCode == UPDATETARGETIST)
+        {
+           object[] data = (object[])photonEvent.CustomData;
+
+            int photonID = (int)data[0];
+
+            Rigidbody2D playerRB = PhotonView.Find(photonID).GetComponent<Rigidbody2D>();
+
+            Debug.LogFormat("player added");
+
+        }
+    }
 
     ///-///////////////////////////////////////////////////////////
     ///
@@ -44,21 +80,49 @@ public class Enemy : MonoBehaviour
         UpdateMovementAnimation();
     }
 
+    public Rigidbody2D FindClosestEnemy()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Player");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+
+        Debug.LogFormat("closest obj {0}", closest.name);
+        return closest.GetComponent<Rigidbody2D>();
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 direction = (player.position - rb.position);
-        direction.Normalize();
+
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            player = FindClosestEnemy();
+            Vector2 direction = (player.position - rb.position);
+            direction.Normalize();
 
 
 
-        LineOfSight(direction);
+            LineOfSight(direction, player);
+        }
+
+  
       
     }
 
     ///-///////////////////////////////////////////////////////////
     ///
-    void LineOfSight(Vector2 direction)
+    void LineOfSight(Vector2 direction, Rigidbody2D player)
     {
         if (Vector3.Distance(transform.position, player.position) <= LOS && Health.IsHurt == false)
         {

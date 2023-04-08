@@ -64,7 +64,7 @@ public class PlayerHealth : Health
     public override IEnumerator Hurting()
     {
         //Shake screen when hurt
-        CinemachineShake.Instance.Shakecamera();
+        photonView.GetComponent<TopDownMovement>().cameraShake.Shakecamera();
 
         return base.Hurting();
 

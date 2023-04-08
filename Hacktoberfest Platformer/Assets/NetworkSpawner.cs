@@ -18,6 +18,7 @@ using Photon.Pun.UtilityScripts;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using Photon.Pun;
 using UnityEngine.InputSystem;
+using ExitGames.Client.Photon;
 
 public class NetworkSpawner : MonoBehaviourPunCallbacks
     {
@@ -35,6 +36,8 @@ public class NetworkSpawner : MonoBehaviourPunCallbacks
         
     }
 
+    // If you have multiple custom events, it is recommended to define them in the used class
+    public const byte UPDATETARGETIST = 1;
     ///-///////////////////////////////////////////////////////////
     ///
     IEnumerator SpawnPlayer()
@@ -54,7 +57,7 @@ public class NetworkSpawner : MonoBehaviourPunCallbacks
         tdm.playerName.enabled = true;
         tdm.playerName.text = PhotonNetwork.LocalPlayer.NickName;
         tdm.enabled = true;
-        tdm.PlayerUI.SetActive(true);
+        tdm.PlayerUI.gameObject.SetActive(true);
         tdm.playerCamera.SetActive(true);
         tdm.playerCamera.tag = "MainCamera";
 
@@ -69,10 +72,10 @@ public class NetworkSpawner : MonoBehaviourPunCallbacks
             photonView.RPC("SetPlayerName", RpcTarget.OthersBuffered, photonView.ViewID);
         }
 
-
     }
 
-    
+
+
 
     public override void OnJoinedRoom()
     {

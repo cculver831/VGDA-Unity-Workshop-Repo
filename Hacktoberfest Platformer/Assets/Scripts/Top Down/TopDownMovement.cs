@@ -11,8 +11,7 @@ public class TopDownMovement : MonoBehaviourPun
     
     public Vector2 movementInput {get; private set;}
     Vector2 rotationInput;
-    [SerializeField]
-    private Rigidbody2D rb;
+    public Rigidbody2D rb { get; private set; }
     [SerializeField]
     private Animator playerAnimator;
     [SerializeField]
@@ -30,7 +29,8 @@ public class TopDownMovement : MonoBehaviourPun
 
     [Header("Network Objects")]
     public GameObject playerCamera;
-    public GameObject PlayerUI;
+    public CinemachineShake cameraShake;
+    public UIManager PlayerUI;
     public TextMeshProUGUI playerName;
     public ContactFilter2D movementFilter;
 
