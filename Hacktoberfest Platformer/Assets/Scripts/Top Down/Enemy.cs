@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviourPun
             }
         }
 
-        Debug.LogFormat("closest obj {0}", closest.name);
+        //Debug.LogFormat("closest obj {0}", closest.name);
         return closest.GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame

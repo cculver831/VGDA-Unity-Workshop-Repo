@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 [System.Serializable]
 public class DefaultRoom
@@ -17,7 +18,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject StartUI;
     public GameObject roomUI;
     public GameObject DungeonList;
-
+    public TextMeshProUGUI debugOutput;
     public List<DefaultRoom> defaultRooms;
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void ConnectToServer()
     {
         PhotonNetwork.ConnectUsingSettings();
-        Debug.Log("Try connect to server... ");
+        debugOutput.text = "trying to connect to server... ";
     }
 
     ///-///////////////////////////////////////////////////////////
@@ -45,7 +46,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         //Tell console we are connected
-        Debug.Log("Conneceted to server.");
+        debugOutput.text = "conneceted to server.";
         base.OnConnectedToMaster();
 
         PhotonNetwork.JoinLobby();
@@ -56,7 +57,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         base.OnJoinedLobby();
-        Debug.Log("We joined the lobby!");
+        debugOutput.text = "connected to lobby";
         StartUI.SetActive(false);
         roomUI.SetActive(true);
     }
@@ -83,7 +84,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     ///
     public override void OnJoinedRoom()
     {
-        Debug.Log("Joined a room");
+        debugOutput.text = "joined room";
         base.OnJoinedRoom();
     }
 
@@ -91,7 +92,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     ///
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log("A new player joined the room");
+        debugOutput.text = "A new player joined the room";
         base.OnPlayerEnteredRoom(newPlayer);
 
     }
@@ -103,5 +104,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.NickName = name;
         roomUI.SetActive(false);
         DungeonList.SetActive(true);
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        base.OnJoinRoomFailed(returnCode, message);
+        debugOutput.text = message;
     }
 }

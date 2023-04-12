@@ -14,7 +14,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField]
     private int totalEnemies = 0;
     [SerializeField]
-    private int totalCount = -1;
+    private int totalCount = 0;
 
 
     ///-///////////////////////////////////////////////////////////
@@ -24,7 +24,7 @@ public class RoomManager : MonoBehaviour
         SetItem();
         SetDoor();
         SetEnemies();
-        CheckCount();
+
     }
 
     ///-///////////////////////////////////////////////////////////
@@ -80,14 +80,22 @@ public class RoomManager : MonoBehaviour
     {
         totalCount++;
 
+        Debug.LogFormat("dead enemies {0} out of {1}", totalCount , enemies.Count);
         //If we defeat all enemes in the room, show our items and unlock the door
         if (totalCount >= totalEnemies)
         {
-            foreach (Item i in itemsToDrop)
-            {
-                i.gameObject.SetActive(true);
+            OnRoomComplete();
+        }
+    }
 
-            }
+
+    ///-///////////////////////////////////////////////////////////
+    ///
+    public void OnRoomComplete()
+    {
+        foreach (Item i in itemsToDrop)
+        {
+            i.gameObject.SetActive(true);
 
         }
     }

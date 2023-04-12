@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class PlayerHealth : Health
 {
@@ -29,14 +30,11 @@ public class PlayerHealth : Health
 
     ///-///////////////////////////////////////////////////////////
     ///
+    [PunRPC]
     public override void ModifyHealth(float damage)
     {
         base.ModifyHealth(damage);
 
-        if (totalHealth >= base.maxHealth)
-        {
-            
-        }
 
         //if our health is to low, we die
         if (totalHealth <= 0)
@@ -45,7 +43,7 @@ public class PlayerHealth : Health
             //CHALLENGE: Add a death animation to play here
 
             //restart the game
-            TransitionManager.Instance.SetEndLevel(0);
+
             
         }
 
@@ -68,5 +66,13 @@ public class PlayerHealth : Health
 
         return base.Hurting();
 
+    }
+
+    [PunRPC]
+    public override void Die()
+    {
+       
+        //Leaving blank for playtesting
+        
     }
 }

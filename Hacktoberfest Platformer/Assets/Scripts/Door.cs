@@ -9,13 +9,22 @@ public class Door : Interactable
 
     public TextPromptTrigger textPrompt;
 
+    [SerializeField]
+    bool hasOpened = false;
     ///-///////////////////////////////////////////////////////////
     ///
+    [PunRPC]
     public override void AttemptInteract()
     {
-        animator.SetBool("isOpen", true);
-        Debug.LogFormat("attempt interact successful");
-        photonView.RequestOwnership();
+        if(animator.GetBool("isOpen") == false)
+        {
+            photonView.RPC("AttemptInteract", RpcTarget.AllBufferedViaServer);
+            animator.SetBool("isOpen", true);
+            Debug.LogFormat("attempt interact successful");
+            hasOpened = true;
+        }
+
+        
         
     }
 

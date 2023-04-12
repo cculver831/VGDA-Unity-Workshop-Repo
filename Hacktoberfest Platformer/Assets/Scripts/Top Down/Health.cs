@@ -16,6 +16,7 @@ public class Health : MonoBehaviourPun
     [SerializeField]
     Animator deathAnimation;
 
+    private bool isDead = false;
     public bool IsHurt { get; protected set; } = false;
 
     private void Start()
@@ -42,12 +43,11 @@ public class Health : MonoBehaviourPun
             _totalHealth += value;
 
 
-            if (totalHealth <= 0)
+            if (isDead == false && totalHealth <= 0 )
             {
                 
                 //TODO: Remove and add to inherited EnemyHealth class
-                if (room)
-                    room.CheckCount();
+                
                 photonView.RPC("Die", RpcTarget.AllBufferedViaServer);
 
             }
@@ -64,11 +64,15 @@ public class Health : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void Die()
+    public virtual void Die()
     {
-
+        if(isDead) { return; }
         Debug.LogFormat("{0} died", gameObject.name);
+        if (room)
+            room.CheckCount();
         photonView.gameObject.SetActive(false);
+        isDead = true;
+
 
     }
 

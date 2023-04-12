@@ -32,13 +32,14 @@ public class Inventory : MonoBehaviourPun
             //Debug.LogFormat("hit {0}}", hit);
             if (interactable != null)
             {
-
+                photonView.RequestOwnership();
                 if (items.Count == 0)
                 {
                     interactable.AttemptDialog(photonView.ViewID);
                 }
                 else
                 {
+                    
                     SearchItems(interactable);
                 }
 
@@ -47,13 +48,14 @@ public class Inventory : MonoBehaviourPun
         
     }
 
+
     private void SearchItems(Interactable interactable)
     {
         for (int i = 0; i < items.Count; i++)
         {
             if (items[i].ID == interactable.ID)
             {
-                photonView.RequestOwnership();
+                interactable.photonView.RequestOwnership();
                 interactable.AttemptInteract();
                 return;
             }

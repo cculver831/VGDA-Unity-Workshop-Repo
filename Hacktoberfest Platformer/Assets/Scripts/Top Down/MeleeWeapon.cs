@@ -28,8 +28,6 @@ public class MeleeWeapon : MonoBehaviour
         //if we hit an object with a correct tag, modify it's health
         if (collision.collider.transform.tag == TagFilter)
         {
-            if(collision.collider.transform.tag == "Player")
-                Debug.LogFormat("player hit {0}", damageDealt);
 
 
             //Modify Health here
@@ -43,7 +41,13 @@ public class MeleeWeapon : MonoBehaviour
                     audio.Play();
                 }
 
-                pv.RPC("ModifyHealth", RpcTarget.All, -damageDealt);
+                //Debug.LogFormat("hit: {0}", collision.collider.name);
+
+
+                if (pv)
+                {
+                    pv.RPC("ModifyHealth", RpcTarget.AllBufferedViaServer, -damageDealt);
+                }
 
 
                 //Apply knockback

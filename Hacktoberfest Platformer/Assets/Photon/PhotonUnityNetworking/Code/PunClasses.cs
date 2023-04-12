@@ -72,7 +72,6 @@ namespace Photon.Pun
                 return this.pvCache;
             }
         }
-
         //#if UNITY_EDITOR
         //protected virtual void Reset()
         //{

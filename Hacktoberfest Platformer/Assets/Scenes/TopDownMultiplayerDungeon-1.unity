@@ -15659,7 +15659,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 490990322}
@@ -15804,6 +15804,10 @@ PrefabInstance:
     - target: {fileID: 1395907395240568752, guid: df998ce8fab19fd4992beb3d629215f9, type: 3}
       propertyPath: Health
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395907395240568756, guid: df998ce8fab19fd4992beb3d629215f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1395907395812461988, guid: df998ce8fab19fd4992beb3d629215f9, type: 3}
       propertyPath: m_Name
@@ -16037,6 +16041,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4759531531576599535, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
+      propertyPath: totalCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759531531576599535, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: itemsToDrop.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -16072,6 +16080,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 6670573146761136920, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6670573147151406854, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -16086,7 +16098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6670573147151406855, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7812750685286947818, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: m_PlayOnAwake
@@ -16366,13 +16378,18 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 698820189}
   - {fileID: 424821903}
+  - {fileID: 698820189}
   - {fileID: 4759531529940891200}
   - {fileID: 4759531529940891201}
   sceneViewId: 32
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!1 &750655270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4759531531576599534, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
+  m_PrefabInstance: {fileID: 4759531529940891190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &757754718 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6670573146761136920, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
@@ -18543,6 +18560,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4759531531576599532, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
   m_PrefabInstance: {fileID: 4759531529940891190}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1736512987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750655270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 39
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &1736726025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18949,6 +18988,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4759531531576599535, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
+      propertyPath: totalCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759531531576599535, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: itemsToDrop.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -18988,6 +19031,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 6670573146761136920, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6670573147151406854, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -19002,7 +19049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6670573147151406855, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7812750685286947818, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: m_PlayOnAwake
@@ -21524,6 +21571,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4759531531576599535, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
+      propertyPath: totalCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759531531576599535, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: itemsToDrop.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -21547,6 +21598,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6670573146761136920, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670573146761136923, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6670573147151406854, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -21561,7 +21620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6670573147151406855, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7812750685286947818, guid: 5d0372bc5da903f42a02845265c2f4c3, type: 3}
       propertyPath: m_PlayOnAwake
@@ -21678,8 +21737,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 4759531529940891198}
   - {fileID: 1492485761}
+  - {fileID: 4759531529940891198}
   sceneViewId: 34
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -21742,7 +21801,7 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: isRunning
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Hurt
   m_SynchronizeLayers:
   - SynchronizeType: 0
